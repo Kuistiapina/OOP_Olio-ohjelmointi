@@ -9,12 +9,24 @@ int game(int maxnum);
 
 int main()
 {
+    cout << "Anna arvottujen numeroiden maksimiluku: ";
+    int maxnum;
+    cin >> maxnum;
+    int tulos = game(maxnum);
+    cout << "Arvauksia oli: "<<tulos<<endl;
+
+
+    return 0;
+}
+
+int game(int maxnum){
     srand(time(NULL)); // Asetetaan siemenluku nykyhetken mukaan
-    int arvottu = rand() % 20 + 1; // Arvotaan satunnainen luku väliltä 1–20
+    int arvottu = rand() % maxnum + 1; // Arvotaan satunnainen luku väliltä 1–käyttäjän syöte
     int arvaus; // Käyttäjän syöte
+    int arvaustenMaara = 0;
 
     do {
-        cout << "Arvaa luku arvoasteikolta 1-20: ";
+        cout << "Arvaa luku arvoasteikolta 1-" <<maxnum << ": ";
         cin >> arvaus;
 
         if (arvaus < arvottu) {
@@ -24,7 +36,7 @@ int main()
         } else {
             cout << "Oikea vastaus!" << endl;
         }
+        arvaustenMaara++;
     } while (arvaus != arvottu);
-
-    return 0;
+    return arvaustenMaara;
 }
